@@ -8,6 +8,7 @@ use yii\web\Controller;
 use yii\filters\VerbFilter;
 
 use app\models\LoginForm;
+use app\models\RegistrationForm;
 
 class SiteController extends Controller
 {
@@ -18,7 +19,7 @@ class SiteController extends Controller
                 'class' => AccessControl::className(),
                 'rules' => [
                     [
-                        'actions' => ['login'],
+                        'actions' => ['login', 'registration'],
                         'allow' => true,
                     ],
                     [
@@ -50,11 +51,6 @@ class SiteController extends Controller
         ];
     }
 
-    public function actionRegister()
-    {
-
-    }
-
     public function actionLogin()
     {
         if (!Yii::$app->user->isGuest) {
@@ -66,6 +62,17 @@ class SiteController extends Controller
             return $this->goBack();
         }
         return $this->render('login', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionRegistration()
+    {
+        $model = new RegistrationForm();
+        if ($model->load(Yii::$app->request->post()) && $model->createUser()) {
+            return $this->redirect(['login']);
+        }
+        return $this->render('registration', [
             'model' => $model,
         ]);
     }
