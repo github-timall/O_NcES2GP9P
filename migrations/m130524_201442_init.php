@@ -2,6 +2,8 @@
 
 use yii\db\Migration;
 
+use app\models\User;
+
 class m130524_201442_init extends Migration
 {
     public function up()
@@ -24,6 +26,15 @@ class m130524_201442_init extends Migration
             'created_at' => $this->integer()->notNull(),
             'updated_at' => $this->integer()->notNull(),
         ], $tableOptions);
+
+        $user = new User();
+        $user->username = 'admin@admin.ru';
+        $user->email = 'admin@admin.ru';
+        $user->generateAuthKey();
+        $user->generatePasswordResetToken();
+        $user->setPassword('123456');
+        $user->status = User::STATUS_ACTIVE;
+        $user->save();
     }
 
     public function down()
