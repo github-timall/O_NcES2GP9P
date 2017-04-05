@@ -5,6 +5,10 @@ use Yii;
 use yii\base\Model;
 use yii\helpers\ArrayHelper;
 
+
+/**
+ * @property \yii\rbac\DbManager $manager
+ */
 class Role extends Model
 {
     public $name;

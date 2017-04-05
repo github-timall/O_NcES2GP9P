@@ -1,5 +1,5 @@
 <?php
-namespace app\components\widgets\select2;
+namespace app\modules\user\components\widgets\select2;
 
 use yii\web\AssetBundle;
 

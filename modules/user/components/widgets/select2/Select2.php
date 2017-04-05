@@ -1,11 +1,9 @@
 <?php
-namespace app\components\widgets\select2;
+namespace app\modules\user\components\widgets\select2;
 
 use yii\helpers\Html;
 use yii\helpers\Json;
 use yii\widgets\InputWidget;
-
-use app\components\widgets\select2\Select2Asset;
 
 class Select2 extends InputWidget
 {

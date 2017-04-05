@@ -48,7 +48,7 @@ class OauthClients extends \yii\db\ActiveRecord
     public function attributeLabels()
     {
         return [
-            'client_id' => 'Название приложения',
+            'client_id' => 'Client ID',
             'client_secret' => 'Client Secret',
             'redirect_uri' => 'Redirect Uri',
             'grant_types' => 'Grant Types',

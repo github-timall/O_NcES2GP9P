@@ -2,7 +2,7 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
-use app\components\widgets\select2\Select2;
+use app\modules\user\components\widgets\select2\Select2;
 ?>
 <?php $form = ActiveForm::begin() ?>
     <div class="row">
@@ -22,7 +22,7 @@ use app\components\widgets\select2\Select2;
                     <div class="form-group">
                         <?php echo Html::label('Roles'); ?>
                         <?= Select2::widget([
-                            'name' => 'Role[roles]',
+                            'name' => 'User[roles]',
                             'items' => $model->getUnassignedRoles(),
                             'selection' => $model->roles,
                             'options' => [

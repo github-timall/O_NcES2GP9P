@@ -54,10 +54,7 @@ class AdminController extends Controller
     {
         $user = new User();
 
-        if ($user->load(\Yii::$app->request->post())) {
-            $user->setPassword($user->password);
-            $user->generateAuthKey();
-            $user->save();
+        if ($user->load(\Yii::$app->request->post()) && $user->save()) {
             return $this->redirect(['index']);
         }
 
@@ -70,17 +67,7 @@ class AdminController extends Controller
     {
         $model = User::findOne($id);
 
-        $model->setAddRoles();
-
-        if ($model->load(Yii::$app->request->post())) {
-
-            if ($model->password)
-                $model->setPassword($model->password);
-
-            $model->save();
-            $user = Yii::$app->request->post('User');
-            if (isset($user['roles']))
-                $model->setRoles($user['roles']);
+        if ($model->load(Yii::$app->request->post()) && $model->checkRoles(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['index']);
         }
 
@@ -92,27 +79,9 @@ class AdminController extends Controller
     public function actionDelete($id)
     {
         $model = User::findOne($id);
-        $model->delete();
+        if ($model) {
+            $model->delete();
+        }
         return $this->redirect(['index']);
-    }
-    
-    public function actionRules()
-    {
-        $rules = new Rules();
-        $rules->setRules();
-        return $this->redirect(['index']);
-    }
-    
-    public function actionProject()
-    {
-        $project = new UserProject();
-        $project->name = 'Default';
-        $project->save();
-        return $this->redirect(['index']);
-    }
-    
-    public function actionTest()
-    {
-        
     }
 }

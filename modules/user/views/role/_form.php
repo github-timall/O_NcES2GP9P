@@ -2,7 +2,7 @@
 use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 
-use app\components\widgets\select2\Select2;
+use app\modules\user\components\widgets\select2\Select2;
 ?>
 <?php $form = ActiveForm::begin() ?>
     <div class="row">

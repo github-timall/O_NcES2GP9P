@@ -50,7 +50,7 @@ class OauthAccessTokens extends \yii\db\ActiveRecord
     {
         return [
             'access_token' => 'Access Token',
-            'client_id' => 'Название приложения',
+            'client_id' => 'Client ID',
             'user_id' => 'Пользователь',
             'expires' => 'Expires',
             'scope' => 'Scope',
